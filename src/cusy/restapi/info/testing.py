@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-from plone.app.testing import (
-    applyProfile,
-    FunctionalTesting,
-    IntegrationTesting,
-    PloneSandboxLayer,
-)
+from plone.app.testing import applyProfile
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 
 import cusy.restapi.info
@@ -21,33 +19,34 @@ class CusyRestapiInfoLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.restapi
+
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=cusy.restapi.info)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'cusy.restapi.info:default')
+        applyProfile(portal, "cusy.restapi.info:default")
 
 
-CUSY_RESTAPI_INFO_FIXTURE = CusyRestapiInfoLayer()
+FIXTURE = CusyRestapiInfoLayer()
 
 
-CUSY_RESTAPI_INFO_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(CUSY_RESTAPI_INFO_FIXTURE,),
-    name='CusyRestapiInfoLayer:IntegrationTesting',
+INTEGRATION_TESTING = IntegrationTesting(
+    bases=(FIXTURE,),
+    name="CusyRestapiInfoLayer:IntegrationTesting",
 )
 
 
-CUSY_RESTAPI_INFO_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(CUSY_RESTAPI_INFO_FIXTURE,),
-    name='CusyRestapiInfoLayer:FunctionalTesting',
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FIXTURE,),
+    name="CusyRestapiInfoLayer:FunctionalTesting",
 )
 
 
-CUSY_RESTAPI_INFO_ACCEPTANCE_TESTING = FunctionalTesting(
+ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        CUSY_RESTAPI_INFO_FIXTURE,
+        FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='CusyRestapiInfoLayer:AcceptanceTesting',
+    name="CusyRestapiInfoLayer:AcceptanceTesting",
 )

@@ -1,10 +1,12 @@
 .coverage
+.coverage*
 *.egg-info
 *.log
 *.mo
 *.py?
 *.swp
 # dirs
+.venv/
 bin/
 buildout-cache/
 develop-eggs/
@@ -26,7 +28,6 @@ log.html
 output.xml
 pip-selfcheck.json
 report.html
-.vscode/
 .tox/
 reports/
 # excludes

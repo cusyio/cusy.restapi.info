@@ -5,17 +5,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="cusy.restapi.info">
 
-  <i18n:registerTranslations directory="locales" />
-
-  <!--
-    Be careful if you use general includeDependencies, it can have side effects!
-    Better import explicit packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
-
-  <include package=".browser" />
-
-  <include file="permissions.zcml" />
 
   <genericsetup:registerProfile
       name="default"

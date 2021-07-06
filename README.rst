@@ -36,7 +36,7 @@ Features
 --------
 
 - Get information about the Plone site using the ``@siteinfo`` endpoint.
-- Get information about a content item using the ``contentinfo`` endpoint.
+- Get information about a content item using the ``@contentinfo`` endpoint.
 
 
 Installation

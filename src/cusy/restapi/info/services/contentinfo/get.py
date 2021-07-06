@@ -2,7 +2,7 @@
 """Service to get content information."""
 
 from cusy.restapi.info.interfaces import ICusyRestapiInfoLayer
-from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.layout.navigation.root import getNavigationRootObject
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
 from zope.component import adapter
@@ -40,11 +40,13 @@ class ContentInfo(object):
                 "View",
             )
 
+        portal = plone.api.portal.get()
+        navigation_root = getNavigationRootObject(self.context, portal)
         result["contentinfo"].update(
             {
                 "default_page": default_page_url,
                 "layout": layout,
-                "navigation_root": getNavigationRoot(self.context),
+                "navigation_root": navigation_root.absolute_url(),
                 "current_language": plone.api.portal.get_current_language(
                     context=self.context
                 ),

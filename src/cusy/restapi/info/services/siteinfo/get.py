@@ -2,6 +2,7 @@
 """Service to get site information."""
 
 from cusy.restapi.info.interfaces import ICusyRestapiInfoLayer
+from plone.app.layout.navigation.root import getNavigationRootObject
 from plone.registry.interfaces import IRegistry
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
@@ -38,9 +39,13 @@ class SiteInfo(object):
         available_languages = language_tool.getSupportedLanguages()
         default_language = language_tool.getDefaultLanguage()
 
+        portal = plone.api.portal.get()
+        navigation_root = getNavigationRootObject(self.context, portal)
+
         result["siteinfo"].update(
             {
                 "title": site_settings.site_title,
+                "navigation_root": navigation_root.absolute_url(),
                 "logo_url": getSiteLogo(),
                 "multilingual": len(available_languages) > 1,
                 "available_languages": available_languages,

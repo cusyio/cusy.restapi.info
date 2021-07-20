@@ -6,7 +6,16 @@
 
   <plone:service
       factory=".get.SiteInfoGet"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      layer="cusy.restapi.info.interfaces.ICusyRestapiInfoLayer"
+      method="GET"
+      name="@siteinfo"
+      permission="zope2.View"
+      />
+
+  <plone:service
+      factory=".get.SiteInfoGet"
+      for="Products.CMFCore.interfaces.IContentish"
       layer="cusy.restapi.info.interfaces.ICusyRestapiInfoLayer"
       method="GET"
       name="@siteinfo"
